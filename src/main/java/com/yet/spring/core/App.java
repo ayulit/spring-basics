@@ -1,7 +1,10 @@
 package com.yet.spring.core;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.yet.spring.core.beans.Client;
-import com.yet.spring.core.loggers.ConsoleEventLogger;
+
 
 public class App {
 
@@ -14,8 +17,8 @@ public class App {
 	}
 
 	public static void main(String[] args) {
-		
-		App app = new App(new Client("1", "Dart Vader"), new ConsoleEventLogger());
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		App app = (App) ctx.getBean("app");
 	
 		app.logEvent("Invitation for user 1");
 
