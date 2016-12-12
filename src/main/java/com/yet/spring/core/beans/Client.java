@@ -1,4 +1,4 @@
-package com.yet.spring.core.less01;
+package com.yet.spring.core.beans;
 
 public class Client {
 	private String id;

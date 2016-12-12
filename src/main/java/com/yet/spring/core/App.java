@@ -1,4 +1,7 @@
-package com.yet.spring.core.less02;
+package com.yet.spring.core;
+
+import com.yet.spring.core.beans.Client;
+import com.yet.spring.core.loggers.ConsoleEventLogger;
 
 public class App {
 
