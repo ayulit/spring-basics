@@ -20,10 +20,18 @@
 		<constructor-arg value="logfile.txt"/>
 	</bean>
 	
+	<bean id="cacheFileEventLogger" 
+			class="com.yet.spring.core.loggers.CacheFileEventLogger"
+			parent="fileEventLogger"
+			init-method="init"
+			>
+		<constructor-arg value="1"/>
+	</bean>
+	
 	
 	<bean id="app" class="com.yet.spring.core.App">
 		<constructor-arg ref="client"/>
-		<constructor-arg ref="fileEventLogger"/>
+		<constructor-arg ref="cacheFileEventLogger"/>
 	</bean>
 	
 	<bean id="event" class="com.yet.spring.core.beans.Event" scope="prototype">
