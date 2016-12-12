@@ -1,6 +1,6 @@
 package com.yet.spring.core;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yet.spring.core.beans.Client;
@@ -18,14 +18,16 @@ public class App {
 	}
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		App app = (App) ctx.getBean("app");
 		Event event = (Event) ctx.getBean("event");
 	    
-	//	for (int i=1;i<=2;i++) {
+		for (int i=1;i<=2;i++) {
 			event.setMsg("Invitation for user 1"); // TODO do it using spring
 			app.logEvent(event);
-	//	}
+		}
+		
+		ctx.close();
 
 	}
 
@@ -34,6 +36,7 @@ public class App {
 		String msg = event.getMsg();
 		String message = msg.replaceAll(client.getId(),client.getFullName());
 		event.setMsg(message);
+		
 		eventLogger.logEvent(event);		
 	}
 }
