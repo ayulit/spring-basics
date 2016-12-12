@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yet.spring.core.beans.Client;
+import com.yet.spring.core.beans.Event;
 
 
 public class App {
@@ -19,14 +20,17 @@ public class App {
 	public static void main(String[] args) {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		App app = (App) ctx.getBean("app");
-	
-		app.logEvent("Invitation for user 1");
+		Event event = (Event) ctx.getBean("event");
+	    event.setMsg("Invitation for user 1"); // TODO do it using spring
+		app.logEvent(event);
 
 	}
 
-	private void logEvent(String msg) {
+	private void logEvent(Event event) {
 		// logics of replacement ID with name for the message
+		String msg = event.getMsg();
 		String message = msg.replaceAll(client.getId(),client.getFullName());
-		eventLogger.logEvent(message);		
+		event.setMsg(message);
+		eventLogger.logEvent(event);		
 	}
 }
