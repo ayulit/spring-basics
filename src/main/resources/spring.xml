@@ -14,7 +14,9 @@
 	
 	<bean id="consoleEventLogger" class="com.yet.spring.core.loggers.ConsoleEventLogger"/>
 	
-	<bean id="fileEventLogger" class="com.yet.spring.core.loggers.FileEventLogger">
+	<bean id="fileEventLogger" 
+			class="com.yet.spring.core.loggers.FileEventLogger" 
+			init-method="init">
 		<constructor-arg value="logfile.txt"/>
 	</bean>
 	
