@@ -5,6 +5,8 @@
 	
 	xmlns:util="http://www.springframework.org/schema/util"
 	
+	xmlns:c="http://www.springframework.org/schema/c"
+	
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		
@@ -15,11 +17,10 @@
 	<import resource="loggers.xml"/>				 			
 	<import resource="others.xml"/>
 	
-	<bean id="app" class="com.yet.spring.core.App">
-		<constructor-arg ref="client"/>
-		<constructor-arg ref="cacheFileEventLogger"/>
-		<constructor-arg ref="loggerMap"/>
-	</bean>
+	<bean id="app" class="com.yet.spring.core.App" 
+		c:client-ref="client"
+		c:eventLogger-ref="cacheFileEventLogger"
+		c:loggers-ref="loggerMap"/>
 	
 	<util:map id="loggerMap">
 		<entry key="INFO" value-ref="consoleEventLogger"/>

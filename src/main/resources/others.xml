@@ -3,15 +3,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		">
 	
-	<bean id="client" class="com.yet.spring.core.beans.Client">
-		<constructor-arg value="${id}"/>
-		<constructor-arg value="${name}"/>
-		<property name="greeting" value="${greeting}"/>
-	</bean>
+	<bean id="client" class="com.yet.spring.core.beans.Client"
+	    c:id="${id}"
+		c:fullName="${name}"
+		p:greeting="${greeting}"/>
 	
 	<bean id="event" class="com.yet.spring.core.beans.Event" scope="prototype">
 		<constructor-arg>
