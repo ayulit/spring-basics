@@ -7,43 +7,9 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		">
 	
-	<bean id="client" class="com.yet.spring.core.beans.Client">
-		<constructor-arg value="1"/>
-		<constructor-arg value="Dart Vader"/>
-	</bean>
+	<import resource="loggers.xml"/>				 			
+	<import resource="others.xml"/>
 	
-	<bean id="consoleEventLogger" class="com.yet.spring.core.loggers.ConsoleEventLogger"/>
-	
-	<bean id="fileLogger" 
-			class="com.yet.spring.core.loggers.FileEventLogger" 
-			init-method="init">
-		<constructor-arg value="log.txt"/>
-	</bean>
-	
-	<bean id="cacheFileEventLogger" 
-			class="com.yet.spring.core.loggers.CacheFileEventLogger"
-			parent="fileLogger"
-			
-			destroy-method="destroy"
-			>
-		<constructor-arg value="3"/>
-	</bean>
-	
-	
-	<bean id="app" class="com.yet.spring.core.App">
-		<constructor-arg ref="client"/>
-		<constructor-arg ref="cacheFileEventLogger"/>
-	</bean>
-	
-	<bean id="event" class="com.yet.spring.core.beans.Event" scope="prototype">
-		<constructor-arg>
-			<bean class="java.util.Date"/>
-		</constructor-arg>
-		<constructor-arg ref="dateFormat"/>		
-	</bean>
-	
-	<bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
-					 			
 </beans>
 
 
