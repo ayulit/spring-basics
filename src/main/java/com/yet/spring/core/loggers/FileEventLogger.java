@@ -39,7 +39,7 @@ public class FileEventLogger implements EventLogger {
 		try {
 			
 			FileUtils.writeStringToFile(file, event.toString() + "\n", Charset.defaultCharset(), true);
-			System.out.println("ok.");
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

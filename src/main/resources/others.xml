@@ -12,18 +12,12 @@
 		<constructor-arg value="Obi Wan"/>
 		<property name="greeting" value=" May the Force be with you!"/>
 	</bean>
-		
-	<bean id="app" class="com.yet.spring.core.App">
-		<constructor-arg ref="client"/>
-		<constructor-arg ref="cacheFileEventLogger"/>
-	</bean>
 	
 	<bean id="event" class="com.yet.spring.core.beans.Event" scope="prototype">
 		<constructor-arg>
 			<bean class="java.util.Date"/>
 		</constructor-arg>
-		<constructor-arg ref="dateFormat"/>
-		<property name="msg" value="Invitation for user 1"></property>	
+		<constructor-arg ref="dateFormat"/>		
 	</bean>
 	
 	<bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>

@@ -1,41 +1,53 @@
 package com.yet.spring.core;
 
+import java.util.Map;
+
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.yet.spring.core.beans.Client;
 import com.yet.spring.core.beans.Event;
+import com.yet.spring.core.beans.EventType;
 
 
 public class App {
 
 	private Client client;
-	private EventLogger eventLogger;
+	private EventLogger defaultLogger;
+	private Map<EventType, EventLogger> loggers;
+	private static Event event;
 	
-	public App(Client client, EventLogger eventLogger) {
+	public App(Client client, EventLogger eventLogger,
+			Map<EventType, EventLogger> loggers) {
 		this.client = client;
-		this.eventLogger = eventLogger;
+		this.defaultLogger = eventLogger;
+		this.loggers = loggers;
 	}
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		App app = (App) ctx.getBean("app");
-		Event event = (Event) ctx.getBean("event");
+		event = (Event) ctx.getBean("event");
 	    
-		for (int i=1;i<=2;i++) {
-			app.logEvent(event);
-		}
+		app.logEvent(EventType.INFO,"Help me, 1! You are my only hope");
+		app.logEvent(EventType.ERROR,"1 teached you well, Luke");
+		app.logEvent(null,"1 is your father, Luke");
 		
 		ctx.close();
 
 	}
 
-	private void logEvent(Event event) {
-		// logics of replacement ID with name for the message
-		String msg = event.getMsg();
-		String message = msg.replaceAll(client.getId(),client.getFullName()+ client.getGreeting());		
+	private void logEvent(EventType type, String msg) {
+		// logics
+		EventLogger logger = loggers.get(type);
+		
+		if (logger == null) {
+			logger = defaultLogger;
+		}
+
+		String message = msg.replaceAll(client.getId(),client.getFullName());		
 		event.setMsg(message);
 		
-		eventLogger.logEvent(event);		
+		logger.logEvent(event);		
 	}
 }
