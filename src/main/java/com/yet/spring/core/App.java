@@ -23,7 +23,6 @@ public class App {
 		Event event = (Event) ctx.getBean("event");
 	    
 		for (int i=1;i<=2;i++) {
-			event.setMsg("Invitation for user 1"); // TODO do it using spring
 			app.logEvent(event);
 		}
 		

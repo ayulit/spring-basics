@@ -21,7 +21,8 @@
 		<constructor-arg>
 			<bean class="java.util.Date"/>
 		</constructor-arg>
-		<constructor-arg ref="dateFormat"/>		
+		<constructor-arg ref="dateFormat"/>
+		<property name="msg" value="Invitation for user 1"></property>	
 	</bean>
 	
 	<bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
