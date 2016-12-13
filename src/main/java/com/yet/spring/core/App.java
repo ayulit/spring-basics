@@ -33,7 +33,7 @@ public class App {
 	private void logEvent(Event event) {
 		// logics of replacement ID with name for the message
 		String msg = event.getMsg();
-		String message = msg.replaceAll(client.getId(),client.getFullName());
+		String message = msg.replaceAll(client.getId(),client.getFullName()+ client.getGreeting());		
 		event.setMsg(message);
 		
 		eventLogger.logEvent(event);		

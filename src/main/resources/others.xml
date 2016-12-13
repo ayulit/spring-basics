@@ -9,7 +9,8 @@
 	
 	<bean id="client" class="com.yet.spring.core.beans.Client">
 		<constructor-arg value="1"/>
-		<constructor-arg value="Dart Vader"/>
+		<constructor-arg value="Obi Wan"/>
+		<property name="greeting" value=" May the Force be with you!"/>
 	</bean>
 		
 	<bean id="app" class="com.yet.spring.core.App">
