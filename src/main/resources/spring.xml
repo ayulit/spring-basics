@@ -14,16 +14,16 @@
 	
 	<bean id="consoleEventLogger" class="com.yet.spring.core.loggers.ConsoleEventLogger"/>
 	
-	<bean id="fileEventLogger" 
+	<bean id="fileLogger" 
 			class="com.yet.spring.core.loggers.FileEventLogger" 
 			init-method="init">
-		<constructor-arg value="logfile.txt"/>
+		<constructor-arg value="log.txt"/>
 	</bean>
 	
 	<bean id="cacheFileEventLogger" 
 			class="com.yet.spring.core.loggers.CacheFileEventLogger"
-			parent="fileEventLogger"
-			init-method="init"
+			parent="fileLogger"
+			
 			destroy-method="destroy"
 			>
 		<constructor-arg value="3"/>
