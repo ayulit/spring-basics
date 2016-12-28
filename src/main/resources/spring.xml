@@ -19,7 +19,7 @@
 	
 	<bean id="app" class="com.yet.spring.core.App" 
 		c:client-ref="client"
-		c:eventLogger-ref="cacheFileEventLogger"
+		c:eventLogger-ref="#{ T(com.yet.spring.core.beans.Event).isDay() ? 'cacheFileEventLogger' : 'consoleEventLogger' }"
 		c:loggers-ref="loggerMap"/>
 	
 	<util:map id="loggerMap">
