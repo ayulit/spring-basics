@@ -29,9 +29,9 @@ public class App {
 		App app = (App) ctx.getBean("app");
 		event = (Event) ctx.getBean("event");
 	    
-		app.logEvent(EventType.INFO,"Help me, 1! You are my only hope");
-		app.logEvent(EventType.ERROR,"1 teached you well, Luke");
-		app.logEvent(null,"1 is your father, Luke");
+		app.logEvent(EventType.INFO,"Help me, 1! You are my only hope. ");
+		app.logEvent(EventType.ERROR,"1 teached you well, Luke. ");
+		app.logEvent(null,"1 is your father, Luke. ");
 		
 		ctx.close();
 
@@ -45,7 +45,8 @@ public class App {
 			logger = defaultLogger;
 		}
 
-		String message = msg.replaceAll(client.getId(),client.getFullName());		
+		String message = msg.replaceAll(client.getId(),client.getFullName());
+		message = message.concat(client.getGreeting());
 		event.setMsg(message);
 		
 		logger.logEvent(event);		
