@@ -22,6 +22,8 @@
 	<!-- my first aspect -->
 	<bean id="logaspect" class="com.yet.spring.core.aspects.LoggingAspect"/>
 	
+	<bean id="statisticsAspect" class="com.yet.spring.core.aspects.StatisticsAspect"/>
+	
 </beans>
 
 
