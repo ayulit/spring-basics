@@ -5,7 +5,12 @@
   <version>0.0.1-SNAPSHOT</version>
   
   <properties>
-  	<spring.ver>4.3.4.RELEASE</spring.ver>
+    <!-- There is some problems with AOP in version gt 4.2.9 -->
+  	<spring.ver>4.2.9.RELEASE</spring.ver>  	
+  	<aspectj.version>1.8.10</aspectj.version>
+  	<commons.io.version>2.5</commons.io.version>
+	<java.version>1.8</java.version>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   
   <dependencies>
@@ -40,9 +45,30 @@
       <dependency>
       		<groupId>commons-io</groupId>
       		<artifactId>commons-io</artifactId>
-      		<version>2.5</version>
-      </dependency>  
+      		<version>${commons.io.version}</version>
+      </dependency>
+      
+      <!-- Using AspectJ -->
+      <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+      		<version>${aspectj.version}</version>
+      </dependency>   
   
   </dependencies>
+  
+  	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
   
 </project>

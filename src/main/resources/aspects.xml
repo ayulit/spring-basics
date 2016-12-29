@@ -13,22 +13,14 @@
 		http://www.springframework.org/schema/util/spring-util.xsd
 		
 		http://www.springframework.org/schema/aop
-		http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
 		">
 	
-	<import resource="loggers.xml"/>				 			
-	<import resource="others.xml"/>
-	<import resource="aspects.xml"/>
+	<!-- aop xml-congig tag -->
+	<aop:aspectj-autoproxy/>
 	
-	<bean id="app" class="com.yet.spring.core.App" 
-		c:client-ref="client"
-		c:eventLogger-ref="#{ T(com.yet.spring.core.beans.Event).isDay() ? 'cacheFileEventLogger' : 'consoleEventLogger' }"
-		c:loggers-ref="loggerMap"/>
-	
-	<util:map id="loggerMap">
-		<entry key="INFO" value-ref="consoleEventLogger"/>
-		<entry key="ERROR" value-ref="combinedEventLogger"/>	
-	</util:map>
+	<!-- my first aspect -->
+	<bean id="logaspect" class="com.yet.spring.core.aspects.LoggingAspect"/>
 	
 </beans>
 
