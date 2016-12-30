@@ -16,13 +16,18 @@
 		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
 		">
 	
-	<!-- aop xml-congig tag -->
+	<!-- aop xml-config tag -->
 	<aop:aspectj-autoproxy/>
 	
 	<!-- my first aspect -->
 	<bean id="logaspect" class="com.yet.spring.core.aspects.LoggingAspect"/>
 	
 	<bean id="statisticsAspect" class="com.yet.spring.core.aspects.StatisticsAspect"/>
+	
+	<bean id="consoleLoggerLimitAspect" class="com.yet.spring.core.aspects.ConsoleLoggerLimitAspect">
+        <constructor-arg value="${console.logger.max:2}"/> <!-- take value from properties, if not found, then default is 2 -->
+        <constructor-arg ref="fileEventLogger"/>
+    </bean>
 	
 </beans>
 
