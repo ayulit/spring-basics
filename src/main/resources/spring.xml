@@ -17,8 +17,9 @@
 		http://www.springframework.org/schema/aop/spring-aop.xsd
 		">
 	
-	<import resource="loggers.xml"/>				 			
 	<import resource="others.xml"/>
+	<import resource="db.xml"/>
+	<import resource="loggers.xml"/>
 	<import resource="aspects.xml"/>
 	
 	<bean id="app" class="com.yet.spring.core.App" 
